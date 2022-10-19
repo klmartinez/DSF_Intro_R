@@ -119,3 +119,14 @@ penguins_complete_data |>
   ylab("Flipper length (mm)") +
   ggtitle("Penguin species bill length by sex") 
 
+# Make a new dataset and output it
+
+# Log transform a dataset
+female_flipper_length <- penguins |>
+  filter(sex == "female") |>
+  select(flipper_length_mm) |>
+  filter(flipper_length_mm < 180) |>
+  print()
+
+# Write a new .csv
+write.csv(female_flipper_length, "female_flipper_length.csv", row.names = FALSE)
