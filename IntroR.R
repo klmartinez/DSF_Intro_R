@@ -79,3 +79,43 @@ write.csv(penguins_bill_length, "penguins_bill_length.csv", row.names = FALSE)
 penguins_bill_length1 <- read.csv("penguins_bill_length.csv")
 
 
+#### New Code
+
+# take another look at the table to remind myself
+formattable(head(penguins))
+
+# look at the different species
+unique(penguins$species)
+
+# Boxplot
+penguins |>
+  ggplot(aes(x = species, y = flipper_length_mm, fill = species)) +
+  geom_violin() +
+  theme_minimal(base_size = 16) +
+  xlab(NULL) +
+  ylab("Flipper length (mm)") +
+  theme(legend.position = "none") +
+  ggtitle("Penguin species flipper length") + 
+  stat_summary(fun.y = mean, geom = "point", shape = 23, size = 2) + 
+  stat_summary(fun.data="mean_sdl", mult=1, geom="crossbar", width=0.2 )
+
+#
+df <- penguins |>
+  group_by(c("species","sex")) |>
+  select(flipper_length_mm)
+  # filter(bill_length_mm > 39.23) |>
+  # arrange(desc(bill_length_mm)) |>
+
+
+# remove NAs
+df <- na.omit(penguins)
+df
+
+# new plot
+df |>
+  ggplot(aes(x=species, y=flipper_length_mm, fill=sex)) +
+  geom_boxplot() +
+  theme_minimal(base_size = 16) +
+  xlab(NULL) +
+  ylab("Flipper length (mm)") +
+  ggtitle("Penguin species flipper length by sex") 
