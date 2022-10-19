@@ -108,4 +108,14 @@ penguins_complete_data |>
   theme_minimal(base_size = 16) +
   xlab(NULL) +
   ylab("Flipper length (mm)") +
-  ggtitle("P
+  ggtitle("Penguin species bill length by sex") 
+
+# violinplot for Penguin species bill  length by sex
+penguins_complete_data |>
+  ggplot(aes(x=species, y=bill_length_mm, fill=sex)) +
+  geom_violin() +
+  theme_minimal(base_size = 16) +
+  xlab(NULL) +
+  ylab("Flipper length (mm)") +
+  ggtitle("Penguin species bill length by sex") 
+
